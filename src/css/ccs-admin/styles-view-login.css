@@ -1,0 +1,90 @@
+.container-login {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000d9;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-login .login {
+  background-color: #fff;
+  min-height: 300px;
+  width: 360px;
+  border-radius: 5px;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: centerEnter 0.3s ease 0s 1 normal forwards;
+}
+@keyframes centerEnter {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.container-login .login h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.container-login input[type="email"],
+input[type="password"] {
+  border: none;
+  outline: none;
+  box-shadow: #808080 0px 0px 2px 0px;
+  height: 25px;
+  width: 60%;
+  text-align: center;
+}
+.login a {
+  text-decoration: none;
+  color: #2177cc;
+  margin-bottom: 10px;
+}
+
+.input-error {
+  box-shadow: inset #ff0000 0px 0px 2px 0px !important;
+  background-color: #ff00001c;
+}
+
+.login .buttons {
+  margin: 20px auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+.buttons .btn-success {
+  background-color: transparent;
+  border: solid 2px #103f6e;
+  color: #103f6e;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+}
+.buttons .btn-success:hover {
+  color: #fff;
+  background-color: #103f6e;
+  font-weight: bold;
+}
+.buttons .btn-cancel {
+  width: 100px;
+  height: 30px;
+  border: solid 2px #ff2e2e;
+  color: #ff2e2e;
+  cursor: pointer;
+  background-color: transparent;
+}
+.buttons .btn-cancel:hover {
+  color: #fff;
+  background-color: #ff2e2e;
+  font-weight: bold;
+}

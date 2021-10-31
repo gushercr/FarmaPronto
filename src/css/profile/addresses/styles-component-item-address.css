@@ -1,0 +1,99 @@
+.container-item-address {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  box-shadow: #808080 0px 0px 2px 0px;
+  padding: 15px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+.container-item-address p {
+  margin: 2px 0;
+}
+.container-item-address span {
+  font-weight: bold;
+}
+.container-item-address .top {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.top .top-options {
+  position: relative;
+}
+.top .top-options:hover > .top-address-options {
+  display: flex;
+}
+.top-options .top-address-options {
+  position: absolute;
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  right: 5px;
+  top: 18px;
+  box-shadow: #808080 0px 0px 2px 0px;
+  display: none;
+  background-color: white;
+}
+
+.top-address-options button {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  color: #808080;
+}
+.container-item-address .title {
+  font-weight: bold;
+  text-align: center;
+  flex: auto;
+}
+
+.HomeNum {
+  display: flex;
+  justify-content: flex-end;
+}
+.HomeNum p {
+  margin-left: 10px;
+}
+.view-address-references {
+  margin-top: 5px;
+  animation: TopEnter 0.5s ease 0s 1 normal forwards;
+}
+.not-view-address-references {
+  display: none;
+}
+.card-buttom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+}
+.card-buttom .more-about-address {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #808080;
+  cursor: pointer;
+}
+.more-about-address p {
+  margin-left: 8px;
+  font-size: 13px;
+}
+.card-buttom .status-address {
+  display: flex;
+  align-items: center;
+}
+.card-buttom .address-selected {
+  font-style: italic;
+  margin-right: 10px;
+  font-size: 13px;
+  color: #808080;
+}
+@media (max-width: 950px) {
+  .container-item-address {
+    width: 90%;
+  }
+}

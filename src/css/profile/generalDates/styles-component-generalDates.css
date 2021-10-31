@@ -1,0 +1,29 @@
+.information-item {
+  font-weight: bold;
+  margin: 0px;
+}
+.item-edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.item-edit div:hover {
+  color: #103f6e;
+}
+.item-edit h2 {
+  margin: 0px;
+  margin-left: 10px;
+}
+.item-edit div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.item-edit h3 {
+  margin-top: 0px;
+}
+.item-edit p {
+  margin: 0px;
+}

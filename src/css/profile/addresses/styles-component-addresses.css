@@ -1,0 +1,22 @@
+.container-addresess {
+  width: 100%;
+}
+.addAddress {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.addAddress .btn-addAddress {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #103f6e;
+  height: 35px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.addAddress .address-icon-add {
+  color: #103f6e;
+}

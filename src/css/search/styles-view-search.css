@@ -1,0 +1,29 @@
+.container-search {
+  width: 90%;
+  margin: 0px auto;
+}
+.container-search .number-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.number-items .number-button {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  color: #103f6e;
+  font-weight: bold;
+  font-family: "Montserrat";
+}
+.number-items p {
+  margin: 0px 10px;
+}
+.number-items span {
+  background-color: #103f6e;
+  color: #fff;
+  padding: 10px;
+}

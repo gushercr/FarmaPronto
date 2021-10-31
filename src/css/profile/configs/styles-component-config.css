@@ -1,0 +1,39 @@
+.item-configuration {
+  display: flex;
+  width: 70%;
+  box-shadow: #808080 0px 0px 2px 0px;
+  padding: 8px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item-configuration .config-description {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  width: 94%;
+}
+.item-configuration p {
+  margin: 2px 0px;
+}
+.config-description .description {
+  color: #808080;
+  font-size: 12px;
+}
+.item-configuration .selected {
+  width: 2px;
+  height: 40px;
+}
+.item-configuration:hover > .selected {
+  background-color: #103f6e;
+}
+@media (max-width: 700px) {
+  .item-configuration {
+    width: 90%;
+  }
+  .item-configuration .config-description {
+    max-width: 85%;
+  }
+}

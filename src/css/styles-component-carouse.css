@@ -1,0 +1,16 @@
+.carousel-slider {
+  max-height: 500px;
+  width: auto;
+}
+.carousel-slider img {
+  height: 500px;
+  width: auto;
+}
+@media (max-width: 700px) {
+  .carousel-slider {
+    max-height: 170px;
+  }
+  .carousel-slider img {
+    height: 170px;
+  }
+}

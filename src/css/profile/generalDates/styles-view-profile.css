@@ -1,0 +1,120 @@
+.container-profile {
+  width: 69vw;
+  min-height: 400px;
+  margin: 0px auto;
+  display: flex;
+  margin-top: 25px;
+  padding: 15px;
+  box-shadow: #808080 0px 0px 2px 0px;
+  align-items: flex-start;
+}
+.container-profile h2 {
+  text-align: center;
+  margin: 2px 0px;
+}
+.container-profile h3 {
+  margin: 10px 0px;
+}
+.container-profile .options {
+  width: 15%;
+  padding-right: 10px;
+  border-right: solid 0.5px #b9b9b9;
+  font-family: "monserrat";
+}
+.container-profile .options h4 {
+  text-align: center;
+  margin-top: 0;
+  font-family: "Montserrat";
+}
+.container-profile .section {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-profile .options button {
+  border: none;
+  width: 100%;
+  height: 35px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-family: "Montserrat";
+}
+.container-profile .options .disable {
+  background-color: transparent;
+  border: solid 2px #103f6e;
+  color: #103f6e;
+}
+.container-profile .options .disable:hover {
+  background-color: #103f6e;
+  color: #fff;
+  font-weight: bold;
+}
+.container-profile .options .logout {
+  border: solid 2px #ff2e2e;
+  color: #ff2e2e;
+  background-color: transparent;
+}
+.container-profile .options .logout:hover {
+  background-color: #ff2e2e;
+  color: #fff;
+  font-weight: bold;
+}
+.container-profile .active {
+  background-color: #103f6e;
+  color: #fff;
+  font-weight: bold;
+}
+.container-profile .section .icon-person {
+  margin-bottom: 20px;
+}
+@media (max-width: 1100px) {
+  .container-profile {
+    width: 90%;
+  }
+}
+@media (max-width: 760px) {
+  .container-profile {
+    width: 90vw;
+  }
+  .container-profile .options {
+    width: 25%;
+  }
+  .container-profile .section {
+    width: 75%;
+  }
+}
+@media (max-width: 550px) {
+  .container-profile {
+    flex-direction: column;
+  }
+  .container-profile .section {
+    width: 100%;
+  }
+  .container-profile .options-responsive ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .container-profile ul {
+    position: relative;
+  }
+  .container-profile ul:hover > ul {
+    display: block;
+  }
+  .options-responsive ul ul {
+    position: absolute;
+    background-color: #f4f4f4;
+    border-radius: 3px;
+    display: none;
+  }
+  .options-responsive button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    display: block;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,67 @@
+.dashboard-container label {
+  display: block;
+  font-weight: bold;
+}
+.dashboard-container input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 250px;
+  border: none;
+  min-height: 30px;
+  margin: 10px 0px;
+  outline: none;
+  box-shadow: #808080 0px 0px 2px 0px;
+  font-family: "Montserrat";
+  text-indent: 6px;
+}
+.dashboard-container textarea {
+  width: 40vw;
+  height: 170px;
+  resize: none;
+  padding-top: 10px;
+}
+.dashboard-container .double-section {
+  display: flex;
+  flex: 3;
+  min-height: 100px;
+}
+.double-section .section-quantity {
+  margin-left: 120px;
+}
+.section-quantity input[type="text"],
+input[type="number"] {
+  width: 100px;
+}
+.section-img-primary {
+  flex: 1 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-img-details {
+  flex: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.double-section .container-double-img {
+  margin-top: 10px;
+  height: 150px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: dotted #cacaca;
+  position: relative;
+}
+.double-section input[type="file"] {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 1%;
+  cursor: pointer;
+  z-index: 1;
+}

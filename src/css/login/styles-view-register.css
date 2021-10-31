@@ -1,0 +1,140 @@
+.container-register {
+  width: 70%;
+  min-height: 600px;
+  margin: 0px auto;
+  display: flex;
+}
+.container-register img {
+  width: 60%;
+}
+.register-form {
+  width: 40%;
+  text-align: center;
+}
+.register-form .register-double-input p,
+.register-input p {
+  font-weight: bold;
+  margin-top: 0px;
+  margin-bottom: 8px;
+}
+.register-double-input,
+.register-input {
+  height: 85px;
+  position: relative;
+}
+.register-span {
+  font-family: monospace;
+  color: #606060;
+  margin-bottom: 20px;
+  display: block;
+}
+.register-form p::after {
+  content: "*";
+  color: red;
+}
+.register-form input {
+  outline: none;
+  border: none;
+  box-shadow: #808080 0px 0px 2px 0px;
+  height: 26px;
+  width: 70%;
+  margin: 0px auto 5px;
+  text-align: center;
+  font-family: "Montserrat";
+}
+.register-form .register-double-input {
+  display: flex;
+}
+.register-input svg {
+  color: red;
+  display: block;
+  margin: 0px auto;
+}
+.register-double-input-item {
+  width: 50%;
+}
+.register-double-input-item input {
+  width: 90%;
+}
+/* .register-double-input-item .instruccions,
+.register-input .instruccions {
+  background-color: #181818d9;
+  color: #fff;
+  position: relative;
+  min-height: 25px;
+  font-size: 12px;
+  top: 12%;
+  border-radius: 4px;
+  display: none;
+}
+.register-double-input-item .instruccions::before,
+.register-input .instruccions::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-right-width: 7px;
+  border-left-width: 7px;
+  border-bottom: 7px solid rgb(58 58 58);
+  left: 50%;
+  position: absolute;
+  display: block;
+  top: -7px;
+}
+#item-name input:focus ~ .instruccions {
+  display: block;
+}
+#item-password input:focus ~ .instruccions {
+  display: block;
+}
+#item-tel input:focus ~ .instruccions {
+  display: block;
+} */
+.register-form .register-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.register-buttons button {
+  height: 30px;
+  width: 40%;
+  border: none;
+  background-color: transparent;
+  /* box-shadow: #808080 0px 0px 2px 0px; */
+  cursor: pointer;
+}
+.register-buttons .btn-access {
+  border: solid 2px #103f6e;
+  color: #103f6e;
+}
+.register-buttons .btn-access:hover {
+  background-color: #103f6e;
+  color: #fff;
+  font-weight: bold;
+}
+.register-buttons .btn-cancel {
+  border: solid 2px #ff0707;
+  color: #ff0707;
+}
+.register-buttons .btn-cancel:hover {
+  background-color: #ff0707;
+  color: #fff;
+  font-weight: bold;
+}
+@media (max-width: 1200px) {
+  .container-register {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .container-register img {
+    display: none;
+  }
+  .container-register {
+    justify-content: center;
+  }
+  .container-register .register-form {
+    width: 100%;
+  }
+}

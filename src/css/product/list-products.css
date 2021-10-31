@@ -1,0 +1,16 @@
+.list-horizontal-products {
+  display: flex;
+  overflow-x: auto;
+  position: relative;
+  width: 95vw;
+  margin: 0px auto;
+}
+.list-horizontal-products::-webkit-scrollbar-thumb:hover {
+  height: 250px;
+  background-color: transparent;
+}
+@media (max-width: 550px) {
+  .list-horizontal-products {
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,19 @@
+.container-loading-block {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-loading-block svg {
+  animation: rotate 1.5s linear 0s infinite normal both;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,11 @@
+[33mcommit c339cbf78516e1d523dd2f73b1c4ea1454e4ce2c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: gushercr <gushercr1@gmail.com>
+Date:   Thu Oct 7 09:29:21 2021 -0500
+
+    Maquetado completo con vista inicio conectada a la bd
+
+[33mcommit b1f9e0558fe99aee3a1f8bc0261c89b0e1c494c7[m
+Author: gushercr <gushercr1@gmail.com>
+Date:   Sun Sep 19 12:20:05 2021 -0500
+
+    Initialize project using Create React App

@@ -1,0 +1,107 @@
+.container-dashboard {
+  width: 100%;
+  height: 100vh;
+  /* background-color: blue; */
+}
+.container-dashboard nav {
+  /* width: 100%; */
+  max-width: 100%;
+  height: 60px;
+  background-color: #103f6e;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+  align-items: center;
+}
+.container-dashboard nav .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.user-info svg {
+  margin-left: 10px;
+}
+
+.container-dashboard .dashboard {
+  display: flex;
+}
+.container-dashboard .dashboard-options {
+  background-color: rgb(244 244 244);
+  max-width: 200px;
+  height: 90vh;
+}
+.dashboard-options .item-option {
+  display: block;
+  border-bottom: solid rgb(218 218 218 / 45%) 0.5px;
+}
+.item-option button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  text-align: left;
+  padding: 5px 13px;
+  width: 100%;
+  min-height: 45px;
+  cursor: pointer;
+  border-radius: 0px;
+}
+.item-option .item-option-submenu {
+  animation: enterTop 0.3s ease 0s 1 normal forwards;
+}
+.item-option-submenu button {
+  padding-left: 35px;
+  font-size: 16px;
+}
+.item-option .hidden {
+  display: none;
+}
+.item-option button:hover {
+  background-color: #175ca1;
+  color: #fff;
+}
+.dashboard-options .active {
+  background-color: #175ca1;
+  color: #fff;
+}
+@keyframes enterTop {
+  0% {
+    opacity: 0;
+    transform: rotateX(-100deg);
+    transform-origin: top;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg);
+    transform-origin: top;
+  }
+}
+.dashboard-content {
+  width: 100%;
+  /* background-color: aquamarine; */
+}
+.dashboard-content .dashboard-container {
+  width: 80%;
+  margin: 0px auto;
+}
+.dashboard-container h2 {
+  margin: 9px 0px;
+}
+.dashboard-container h2 {
+  display: flex;
+  justify-content: space-between;
+}
+.container-dashboard h2 > button {
+  background-color: transparent;
+  color: #103f6e;
+  width: 100px;
+  font-size: 15px;
+  border: solid 2px #103f6e;
+  cursor: pointer;
+}
+.container-dashboard h2 > button:hover {
+  background-color: #103f6e;
+  color: #fff;
+  font-weight: bold;
+}

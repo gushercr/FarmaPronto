@@ -3,7 +3,9 @@ import "../../css/ccs-admin/styles-view-dashboard.css";
 import { BsGearWideConnected, BiUserCircle } from "react-icons/all";
 import ListProducts from "../../components/components-admin/products/ListProducts";
 import AddProduct from "../../components/components-admin/products/AddProduct";
+import EditProduct from "../../components/components-admin/products/EditProduct";
 import ListBrand from "../../components/components-admin/marks/ListBrand";
+import AddBrand from "../../components/components-admin/marks/AddBrand";
 import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
 export default function Dashboard() {
   const itemCarrusel = useRef(null);
@@ -69,14 +71,19 @@ export default function Dashboard() {
   const section = (
     <Switch>
       <Route
-        path="/typeUser/admin/dashboard/listProducts"
+        path="/typeUser/admin/dashboard/listProducts/:type"
         component={ListProducts}
+      />
+      <Route
+        path="/typeUser/admin/dashboard/editProduct/:id"
+        component={EditProduct}
       />
       <Route
         path="/typeUser/admin/dashboard/addProduct"
         component={AddProduct}
       />
       <Route path="/typeUser/admin/dashboard/listBrand" component={ListBrand} />
+      <Route path="/typeUser/admin/dashboard/addBrand" component={AddBrand} />
 
       {/* <Route
         path="/typeUser/admin/dashboard/ListOrders"
@@ -126,7 +133,7 @@ export default function Dashboard() {
               Productos
             </button>
             <div className="item-option-submenu hidden">
-              <Link to={`${path}/listProducts`}>
+              <Link to={`${path}/listProducts/published`}>
                 <button>Listar productos</button>
               </Link>
               <Link to={`${path}/addProduct`}>
@@ -146,8 +153,12 @@ export default function Dashboard() {
               Marcas
             </button>
             <div className="item-option-submenu hidden">
-              <button>Listar marcas</button>
-              <button>Agregar marcas</button>
+              <Link to={`${path}/listBrand`}>
+                <button>Listar marcas</button>
+              </Link>
+              <Link to={`${path}/addBrand`}>
+                <button>Agregar marcas</button>
+              </Link>
             </div>
           </div>
           <div className="item-option" ref={itemCategory} id="category">

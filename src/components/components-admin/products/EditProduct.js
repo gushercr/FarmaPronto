@@ -6,7 +6,8 @@ import { getListCategorys } from "../../../api/client/category/listCategorys";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
-import { insertProduct } from "../../../api/admin/products";
+import { editProduct, changePublished } from "../../../api/admin/products";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 const validationSchema = yup.object({
   title: yup.string().min(4).required(),
   description: yup.string().min(4).required(),
@@ -18,11 +19,18 @@ const validationSchema = yup.object({
   main_img: yup.mixed().required(),
   detail_img: yup.mixed().required(),
 });
-export default function AddProduct() {
+export default function EditProduct() {
+  const { id } = useParams();
+  const params = useLocation();
+  const { state } = params;
+  const history = useHistory();
+
   const [dataBrands, setDataBrands] = useState(null);
   const [dataCategorys, setDataCategorys] = useState(null);
-  const [url_main_img, set_urlMain_img] = useState("");
-  const [url_detailimg, SetUrl_detailimg] = useState("");
+  const [url_main_img, set_urlMain_img] = useState(state.main_img);
+  const [url_detailimg, SetUrl_detailimg] = useState(
+    state.detail_img.length > 0 ? state.detail_img[0].url : ""
+  );
   const [main_img, Setmain_img] = useState([]);
   const [detailsimg, setDetailsimg] = useState([]);
   useEffect(() => {
@@ -32,7 +40,6 @@ export default function AddProduct() {
         const dataCategorys = await getListCategorys();
         setDataBrands(dataBrands.result);
         setDataCategorys(dataCategorys.result);
-        // console.log(dataBrands);
       } catch (error) {
         console.log(error);
       }
@@ -40,30 +47,41 @@ export default function AddProduct() {
   }, []);
   const formik = useFormik({
     initialValues: {
-      title: "",
-      description: "",
-      category: "",
-      brand: "",
-      stock: 0,
-      price: 0,
-      discount: 0,
-      main_img: [],
-      detail_img: [],
+      title: state.title,
+      description: state.description,
+      category: state.category,
+      brand: state.brand,
+      stock: state.stock,
+      price: state.price,
+      discount: state.discount,
+      main_img: state.main_img,
+      detail_img: state.detail_img,
+      //   verificacion de cambios en las imagenes para enviar url
+      img_main_edit: false,
+      img_detail_edit: false,
+      //   url's actuales
+      url_main_img: state.main_img,
+      url_detail_img:
+        state.detail_img.length > 0 ? state.detail_img[0].url : "",
+      // id de imagen
+      imgId: state.detail_img.length > 0 ? state.detail_img[0].imgId : " ",
     },
+
     onSubmit: async (values) => {
-      const response = await insertProduct(values, main_img, detailsimg);
+      const response = await editProduct(id, values, main_img, detailsimg);
       if (!response.errors) {
-        toast.success("Producto añadido");
+        toast.success("Cambios guardados");
         setTimeout(() => {
-          window.location.replace("");
+          history.goBack();
         }, 2500);
       } else {
         toast.error("Revise sus datos");
       }
-      console.log(response);
+      // console.log(response);
     },
     validationSchema: validationSchema,
   });
+
   const setImage = (e) => {
     if (
       e.target.files[0].type === "image/jpeg" ||
@@ -71,6 +89,7 @@ export default function AddProduct() {
     ) {
       set_urlMain_img(URL.createObjectURL(e.target.files[0]));
       Setmain_img(e.target.files[0]);
+      formik.setFieldValue("img_main_edit", true);
     } else {
       formik.setFieldValue("main_img", []);
       toast.error("Ingrese una imagen con formato valido (PNG o JPEG)");
@@ -83,12 +102,21 @@ export default function AddProduct() {
     ) {
       SetUrl_detailimg(URL.createObjectURL(e.target.files[0]));
       setDetailsimg(e.target.files[0]);
+      formik.setFieldValue("img_detail_edit", true);
     } else {
       formik.setFieldValue("detail_img", []);
       toast.error("Ingrese una imagen con formato valido (PNG o JPEG)");
     }
   };
-  // console.log(detailsimg);
+  const changepublished = async () => {
+    const response = await changePublished(id);
+    if (!response.errors) {
+      toast.success("Cambios guardados");
+      setTimeout(() => {
+        history.goBack();
+      }, 2500);
+    }
+  };
 
   return (
     <>
@@ -104,12 +132,25 @@ export default function AddProduct() {
         pauseOnHover
         theme="dark"
       />
+
       <div className="dashboard-container">
         <h2>
           Ingresa los datos
-          <form onSubmit={formik.handleSubmit}>
-            <button type="submit">Guardar</button>
-          </form>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <form
+              onSubmit={formik.handleSubmit}
+              style={{ margin: 0, display: "flex" }}
+            >
+              <button type="submit">Guardar</button>
+            </form>
+
+            <button
+              style={{ marginLeft: "10px" }}
+              onClick={() => changepublished()}
+            >
+              {state.published ? "Despublicar" : "Publicar"}
+            </button>
+          </div>
         </h2>
         <div className="double-section">
           <div>
@@ -118,8 +159,8 @@ export default function AddProduct() {
               type="text"
               placeholder="Agrega un titulo"
               name="title"
-              onChange={formik.handleChange}
               value={formik.values.title}
+              onChange={formik.handleChange}
               className={formik.errors.title && "input-error"}
             />
             <label>Categoria</label>
@@ -225,7 +266,9 @@ export default function AddProduct() {
                     <IoMdCloseCircle
                       size={30}
                       color="red"
-                      onClick={() => formik.setFieldValue("main_img", [])}
+                      onClick={() => {
+                        formik.setFieldValue("main_img", []);
+                      }}
                     />
                   </div>
                 </>
@@ -257,7 +300,9 @@ export default function AddProduct() {
                     <IoMdCloseCircle
                       size={30}
                       color="red"
-                      onClick={() => formik.setFieldValue("detail_img", [])}
+                      onClick={() => {
+                        formik.setFieldValue("detail_img", []);
+                      }}
                     />
                   </div>
                 </>

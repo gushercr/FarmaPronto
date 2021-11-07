@@ -1,37 +1,63 @@
 import { TiEdit } from "react-icons/all";
+import { useEffect, useState } from "react";
+import { getBrands } from "../../../api/admin/brands";
 export default function ListBrand() {
+  const [dataBrands, setData] = useState(null);
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getBrands();
+        setData(data.result);
+        console.log(data.result);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   return (
     <div className="dashboard-container">
       <h2>Marcas</h2>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <input type="text" placeholder="Buscar producto" />
+        <input type="text" placeholder="Buscar marca" />
       </div>
       <table>
         <thead>
           <tr>
             <th>id</th>
             <th>Nombre</th>
-            <th>Categoria</th>
-            <th>Marca</th>
-            <th>Existencia</th>
-            <th>Precio</th>
-            <th>Descuento</th>
-            <th></th>
+            <th>imagen</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>122</td>
-            <td>Ampicilina</td>
-            <td>Higiene</td>
-            <td>Acme</td>
-            <td>5</td>
-            <td>$55</td>
-            <td>15%</td>
-            <td>
-              <TiEdit size={30} style={{ cursor: "pointer" }} />
-            </td>
-          </tr>
+          {dataBrands && (
+            <>
+              {dataBrands.length > 0 ? (
+                <>
+                  {dataBrands.map((brand) => {
+                    return (
+                      <tr key={brand.id}>
+                        <td>{brand.id}</td>
+                        <td>{brand.name}</td>
+                        <td>
+                          <img
+                            src={brand.img_url}
+                            alt={brand.name}
+                            height="50px"
+                          />
+                        </td>
+                        <td>
+                          <TiEdit size={30} style={{ cursor: "pointer" }} />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </>
+              ) : (
+                "No hay marcas"
+              )}
+            </>
+          )}
         </tbody>
       </table>
     </div>

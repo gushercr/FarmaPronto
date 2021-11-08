@@ -1,14 +1,17 @@
 import { TiEdit } from "react-icons/all";
 import { useEffect, useState } from "react";
 import { getBrands } from "../../../api/admin/brands";
+import LoadingBlock from "../../LoadingBlock";
+import { Link } from "react-router-dom";
 export default function ListBrand() {
   const [dataBrands, setData] = useState(null);
+  const path = "/typeUser/admin/dashboard/editBrand/";
   useEffect(() => {
     (async () => {
       try {
         const data = await getBrands();
         setData(data.result);
-        console.log(data.result);
+        // console.log(data.result);
       } catch (error) {
         console.log(error);
       }
@@ -20,17 +23,17 @@ export default function ListBrand() {
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <input type="text" placeholder="Buscar marca" />
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Nombre</th>
-            <th>imagen</th>
-            <th>Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dataBrands && (
+      {dataBrands ? (
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Nombre</th>
+              <th>imagen</th>
+              <th>Editar</th>
+            </tr>
+          </thead>
+          <tbody>
             <>
               {dataBrands.length > 0 ? (
                 <>
@@ -47,7 +50,14 @@ export default function ListBrand() {
                           />
                         </td>
                         <td>
-                          <TiEdit size={30} style={{ cursor: "pointer" }} />
+                          <Link
+                            to={{
+                              pathname: `${path}${brand.id} `,
+                              state: brand,
+                            }}
+                          >
+                            <TiEdit size={30} style={{ cursor: "pointer" }} />
+                          </Link>
                         </td>
                       </tr>
                     );
@@ -57,9 +67,11 @@ export default function ListBrand() {
                 "No hay marcas"
               )}
             </>
-          )}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      ) : (
+        <LoadingBlock />
+      )}
     </div>
   );
 }

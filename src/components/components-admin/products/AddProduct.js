@@ -7,8 +7,9 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import { insertProduct } from "../../../api/admin/products";
+import LoadingFloat from "../../LoadingFloat";
 const validationSchema = yup.object({
-  title: yup.string().min(4).required(),
+  title: yup.string().min(10).required(),
   description: yup.string().min(4).required(),
   category: yup.string().min(4).required(),
   brand: yup.string().min(4).required(),
@@ -25,6 +26,7 @@ export default function AddProduct() {
   const [url_detailimg, SetUrl_detailimg] = useState("");
   const [main_img, Setmain_img] = useState([]);
   const [detailsimg, setDetailsimg] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     (async () => {
       try {
@@ -51,13 +53,16 @@ export default function AddProduct() {
       detail_img: [],
     },
     onSubmit: async (values) => {
+      setLoading(true);
       const response = await insertProduct(values, main_img, detailsimg);
       if (!response.errors) {
+        setLoading(false);
         toast.success("Producto añadido");
         setTimeout(() => {
           window.location.replace("");
         }, 2500);
       } else {
+        setLoading(false);
         toast.error("Revise sus datos");
       }
       console.log(response);
@@ -92,6 +97,8 @@ export default function AddProduct() {
 
   return (
     <>
+      {loading && <LoadingFloat />}
+
       <ToastContainer
         position="top-center"
         autoClose={1600}

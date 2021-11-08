@@ -7,6 +7,7 @@ import EditProduct from "../../components/components-admin/products/EditProduct"
 import ListBrand from "../../components/components-admin/marks/ListBrand";
 import AddBrand from "../../components/components-admin/marks/AddBrand";
 import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
+import EditBrand from "../../components/components-admin/marks/EditBrand";
 export default function Dashboard() {
   const itemCarrusel = useRef(null);
   const itemMark = useRef(null);
@@ -83,6 +84,10 @@ export default function Dashboard() {
         component={AddProduct}
       />
       <Route path="/typeUser/admin/dashboard/listBrand" component={ListBrand} />
+      <Route
+        path="/typeUser/admin/dashboard/editBrand/:id"
+        component={EditBrand}
+      />
       <Route path="/typeUser/admin/dashboard/addBrand" component={AddBrand} />
 
       {/* <Route

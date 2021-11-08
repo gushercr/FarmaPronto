@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import { editProduct, changePublished } from "../../../api/admin/products";
 import { useParams, useLocation, useHistory } from "react-router-dom";
+import LoadingFloat from "../../LoadingFloat";
 const validationSchema = yup.object({
   title: yup.string().min(4).required(),
   description: yup.string().min(4).required(),
@@ -33,6 +34,7 @@ export default function EditProduct() {
   );
   const [main_img, Setmain_img] = useState([]);
   const [detailsimg, setDetailsimg] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     (async () => {
       try {
@@ -68,13 +70,16 @@ export default function EditProduct() {
     },
 
     onSubmit: async (values) => {
+      setLoading(true);
       const response = await editProduct(id, values, main_img, detailsimg);
       if (!response.errors) {
+        setLoading(false);
         toast.success("Cambios guardados");
         setTimeout(() => {
           history.goBack();
         }, 2500);
       } else {
+        setLoading(false);
         toast.error("Revise sus datos");
       }
       // console.log(response);
@@ -132,7 +137,7 @@ export default function EditProduct() {
         pauseOnHover
         theme="dark"
       />
-
+      {loading && <LoadingFloat />}
       <div className="dashboard-container">
         <h2>
           Ingresa los datos

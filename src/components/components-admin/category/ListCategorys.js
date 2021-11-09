@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { getBrands } from "../../../api/admin/brands";
+import { getCategorys } from "../../../api/admin/categorys";
 import LoadingBlock from "../../LoadingBlock";
 import { Link } from "react-router-dom";
 import { TiEdit, GrFormClose } from "react-icons/all";
 
-export default function ListBrand() {
-  const [dataBrands, setData] = useState(null);
-  const path = "/typeUser/admin/dashboard/editBrand/";
+export default function ListCategorys() {
+  const [dataCategorys, setData] = useState(null);
+  const path = "/typeUser/admin/dashboard/editCategory/";
   const [search, setSearch] = useState(null);
   const [querySearch, setQuerySearch] = useState("");
   useEffect(() => {
     (async () => {
       try {
-        const data = await getBrands();
+        const data = await getCategorys();
         setData(data.result);
         // console.log(data.result);
       } catch (error) {
@@ -27,7 +27,7 @@ export default function ListBrand() {
     );
     query.charAt(0).toUpperCase();
     if (query.length > 3) {
-      const result = dataBrands.filter((element) => {
+      const result = dataCategorys.filter((element) => {
         return element.name.includes(query);
       });
       setSearch(result);
@@ -67,38 +67,30 @@ export default function ListBrand() {
           />
         )}
       </div>
-      {dataBrands ? (
+      {dataCategorys ? (
         <table>
           <thead>
             <tr>
               <th>id</th>
               <th>Nombre</th>
-              <th>imagen</th>
-              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
             {!search ? (
               <>
-                {dataBrands.length > 0 ? (
+                {dataCategorys.length > 0 ? (
                   <>
-                    {dataBrands.map((brand) => {
+                    {dataCategorys.map((category) => {
                       return (
-                        <tr key={brand.id}>
-                          <td>{brand.id}</td>
-                          <td>{brand.name}</td>
-                          <td>
-                            <img
-                              src={brand.img_url}
-                              alt={brand.name}
-                              height="50px"
-                            />
-                          </td>
+                        <tr key={category.id}>
+                          <td>{category.id}</td>
+                          <td>{category.name}</td>
+
                           <td>
                             <Link
                               to={{
-                                pathname: `${path}${brand.id} `,
-                                state: brand,
+                                pathname: `${path}${category.id} `,
+                                state: category,
                               }}
                             >
                               <TiEdit size={30} style={{ cursor: "pointer" }} />
@@ -109,7 +101,7 @@ export default function ListBrand() {
                     })}
                   </>
                 ) : (
-                  "No hay marcas"
+                  "No hay categorias"
                 )}
               </>
             ) : (
@@ -121,13 +113,7 @@ export default function ListBrand() {
                         <tr key={brand.id}>
                           <td>{brand.id}</td>
                           <td>{brand.name}</td>
-                          <td>
-                            <img
-                              src={brand.img_url}
-                              alt={brand.name}
-                              height="50px"
-                            />
-                          </td>
+
                           <td>
                             <Link
                               to={{

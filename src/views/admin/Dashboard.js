@@ -1,13 +1,20 @@
 import { useRef } from "react";
 import "../../css/ccs-admin/styles-view-dashboard.css";
 import { BsGearWideConnected, BiUserCircle } from "react-icons/all";
+// productos
 import ListProducts from "../../components/components-admin/products/ListProducts";
 import AddProduct from "../../components/components-admin/products/AddProduct";
 import EditProduct from "../../components/components-admin/products/EditProduct";
+// marcas
 import ListBrand from "../../components/components-admin/marks/ListBrand";
 import AddBrand from "../../components/components-admin/marks/AddBrand";
-import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
 import EditBrand from "../../components/components-admin/marks/EditBrand";
+// categorias
+import ListCategorys from "../../components/components-admin/category/ListCategorys";
+import AddCategory from "../../components/components-admin/category/AddCategory";
+import EditCategory from "../../components/components-admin/category/EditCategory";
+
+import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
 export default function Dashboard() {
   const itemCarrusel = useRef(null);
   const itemMark = useRef(null);
@@ -71,6 +78,7 @@ export default function Dashboard() {
   };
   const section = (
     <Switch>
+      {/* rutas de productos */}
       <Route
         path="/typeUser/admin/dashboard/listProducts/:type"
         component={ListProducts}
@@ -83,13 +91,26 @@ export default function Dashboard() {
         path="/typeUser/admin/dashboard/addProduct"
         component={AddProduct}
       />
+      {/* rutas de marcas */}
       <Route path="/typeUser/admin/dashboard/listBrand" component={ListBrand} />
       <Route
         path="/typeUser/admin/dashboard/editBrand/:id"
         component={EditBrand}
       />
       <Route path="/typeUser/admin/dashboard/addBrand" component={AddBrand} />
-
+      {/* rutas de categorias */}
+      <Route
+        path="/typeUser/admin/dashboard/listCategorys"
+        component={ListCategorys}
+      />
+      <Route
+        path="/typeUser/admin/dashboard/addCategory"
+        component={AddCategory}
+      />
+      <Route
+        path="/typeUser/admin/dashboard/editCategory/:id"
+        component={EditCategory}
+      />
       {/* <Route
         path="/typeUser/admin/dashboard/ListOrders"
         component={ListOrders}
@@ -178,7 +199,12 @@ export default function Dashboard() {
               Categorias
             </button>
             <div className="item-option-submenu hidden">
-              <button>submenu</button>
+              <Link to={`${path}/listCategorys`}>
+                <button>Listar Categorias</button>
+              </Link>
+              <Link to={`${path}/addCategory`}>
+                <button>Agregar categoria</button>
+              </Link>
             </div>
           </div>
           <div className="item-option" ref={itemOrder} id="order">

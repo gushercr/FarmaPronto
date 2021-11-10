@@ -2,9 +2,3 @@
   width: 100%;
   text-align: center;
 }
-.dashboard-container table tbody tr:hover {
-  background-color: #000b1512;
-}
-.dashboard-container table a {
-  color: black;
-}

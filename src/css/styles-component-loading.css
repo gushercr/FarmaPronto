@@ -5,7 +5,20 @@
   justify-content: center;
   align-items: center;
 }
-.container-loading-block svg {
+.container-loading-float {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000059;
+  z-index: 9999;
+}
+.container-loading-block svg,
+.container-loading-float svg {
   animation: rotate 1.5s linear 0s infinite normal both;
 }
 @keyframes rotate {

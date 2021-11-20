@@ -177,15 +177,14 @@ export default function Header() {
               </>
             ) : (
               <>
+                <BiSearchAlt
+                  size={20}
+                  color="#000"
+                  style={{ marginRight: "15px" }}
+                  onClick={() => setviewSearch(true)}
+                />
                 {userAuth ? (
                   <>
-                    <BiSearchAlt
-                      size={20}
-                      color="#000"
-                      style={{ marginRight: "15px" }}
-                      onClick={() => setviewSearch(true)}
-                    />
-
                     <div className="auth-options">
                       <svg
                         width="40"

@@ -1,23 +1,10 @@
 import { useRef } from "react";
 import "../../css/ccs-admin/styles-view-dashboard.css";
-import { BiLogOutCircle } from "react-icons/all";
-import Logo from "../../assets/logoFarmaPronto-responsivoBN.png";
-// productos
+import { BsGearWideConnected, BiUserCircle } from "react-icons/all";
 import ListProducts from "../../components/components-admin/products/ListProducts";
 import AddProduct from "../../components/components-admin/products/AddProduct";
-import EditProduct from "../../components/components-admin/products/EditProduct";
-// marcas
 import ListBrand from "../../components/components-admin/marks/ListBrand";
-import AddBrand from "../../components/components-admin/marks/AddBrand";
-import EditBrand from "../../components/components-admin/marks/EditBrand";
-// categorias
-import ListCategorys from "../../components/components-admin/category/ListCategorys";
-import AddCategory from "../../components/components-admin/category/AddCategory";
-import EditCategory from "../../components/components-admin/category/EditCategory";
-
 import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
-import ListElementsCarrousel from "../../components/components-admin/carrousel/ListElementsCarrousel";
-import EditElements from "../../components/components-admin/carrousel/EditElements";
 export default function Dashboard() {
   const itemCarrusel = useRef(null);
   const itemMark = useRef(null);
@@ -26,14 +13,6 @@ export default function Dashboard() {
   const itemUser = useRef(null);
   const itemProduct = useRef(null);
   const { path } = useRouteMatch();
-  function userAuth() {
-    const token = localStorage.getItem("adminToken");
-    if (token && token !== "") {
-      return true;
-    } else {
-      return false;
-    }
-  }
   const setSelected = (e) => {
     var selected = document.getElementsByClassName("active");
     let anotherSubmenu = document.getElementsByClassName("item-option-submenu");
@@ -89,92 +68,32 @@ export default function Dashboard() {
   };
   const section = (
     <Switch>
-      {/* rutas de productos */}
-      {userAuth() ? (
-        <>
-          <Route
-            path="/typeUser/admin/dashboard/listProducts/:type"
-            component={ListProducts}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/editProduct/:id"
-            component={EditProduct}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/addProduct"
-            component={AddProduct}
-          />
-          {/* rutas de marcas */}
-          <Route
-            path="/typeUser/admin/dashboard/listBrand"
-            component={ListBrand}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/editBrand/:id"
-            component={EditBrand}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/addBrand"
-            component={AddBrand}
-          />
-          {/* rutas de categorias */}
-          <Route
-            path="/typeUser/admin/dashboard/listCategorys"
-            component={ListCategorys}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/addCategory"
-            component={AddCategory}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/editCategory/:id"
-            component={EditCategory}
-          />
-          {/* rutas del carrusel */}
-          <Route
-            path="/typeUser/admin/dashboard/Carrousel"
-            component={ListElementsCarrousel}
-          />
-          <Route
-            path="/typeUser/admin/dashboard/editCarrousel"
-            component={EditElements}
-          />
-          <Redirect to="/typeUser/admin/dashboard/Carrousel" />
-        </>
-      ) : (
-        <Redirect to="/typeUser/admin/" />
-      )}
+      <Route
+        path="/typeUser/admin/dashboard/listProducts"
+        component={ListProducts}
+      />
+      <Route
+        path="/typeUser/admin/dashboard/addProduct"
+        component={AddProduct}
+      />
+      <Route path="/typeUser/admin/dashboard/listBrand" component={ListBrand} />
+
+      {/* <Route
+        path="/typeUser/admin/dashboard/ListOrders"
+        component={ListOrders}
+      /> */}
+      <Redirect to="/typeUser/admin/dashboard/Carrousel" />
     </Switch>
   );
 
   return (
     <div className="container-dashboard">
       <nav>
-        <div className="logo">
-          <img src={Logo} alt="Logo FarmaPronto" width="50px" />
-        </div>
+        <div className="logo">imagen</div>
         <div className="user-info">
-          <p> {localStorage.getItem("nameAdmin")}</p>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "solid 2px #ff2222",
-              marginLeft: "10px",
-              color: "#ff2222",
-              display: "flex",
-              fontSize: "15px",
-              alignItems: "center",
-              height: "30px",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              localStorage.removeItem("adminToken");
-              window.location.replace("");
-            }}
-          >
-            Logout
-            <BiLogOutCircle />
-          </button>
+          <p>Gushercr</p>
+          <BsGearWideConnected size={24} />
+          <BiUserCircle size={24} />
         </div>
       </nav>
 
@@ -192,12 +111,7 @@ export default function Dashboard() {
               Carrusel de promociones
             </button>
             <div className="item-option-submenu hidden">
-              <Link to={`${path}/Carrousel`}>
-                <button>Vista previa</button>
-              </Link>
-              <Link to={`${path}/editCarrousel`}>
-                <button>Editar carrousel</button>
-              </Link>
+              <button>submenu</button>
             </div>
           </div>
           <div className="item-option" ref={itemProduct} id="product">
@@ -212,7 +126,7 @@ export default function Dashboard() {
               Productos
             </button>
             <div className="item-option-submenu hidden">
-              <Link to={`${path}/listProducts/published`}>
+              <Link to={`${path}/listProducts`}>
                 <button>Listar productos</button>
               </Link>
               <Link to={`${path}/addProduct`}>
@@ -232,12 +146,8 @@ export default function Dashboard() {
               Marcas
             </button>
             <div className="item-option-submenu hidden">
-              <Link to={`${path}/listBrand`}>
-                <button>Listar marcas</button>
-              </Link>
-              <Link to={`${path}/addBrand`}>
-                <button>Agregar marcas</button>
-              </Link>
+              <button>Listar marcas</button>
+              <button>Agregar marcas</button>
             </div>
           </div>
           <div className="item-option" ref={itemCategory} id="category">
@@ -252,15 +162,10 @@ export default function Dashboard() {
               Categorias
             </button>
             <div className="item-option-submenu hidden">
-              <Link to={`${path}/listCategorys`}>
-                <button>Listar Categorias</button>
-              </Link>
-              <Link to={`${path}/addCategory`}>
-                <button>Agregar categoria</button>
-              </Link>
+              <button>submenu</button>
             </div>
           </div>
-          {/* <div className="item-option" ref={itemOrder} id="order">
+          <div className="item-option" ref={itemOrder} id="order">
             <button
               className={
                 window.location.pathname.indexOf("Order") !== -1
@@ -280,7 +185,7 @@ export default function Dashboard() {
             <div className="item-option-submenu hidden">
               <button>submenu</button>
             </div>
-          </div> */}
+          </div>
           {/* <div className="item-option" id="">
             <button>Roles</button>
             <div className="item-option-submenu hidden">
